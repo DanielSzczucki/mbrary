@@ -1,6 +1,6 @@
 //sprawdzamy, jeśli nie odpali sie w srodowisku produkcyjnymn,wtedy załąduje bibliotekę dotenv
 
-const DATABASE_URL = "mongodb://127.0.0.1:27017/mybrary";
+const config = require("./utils/config");
 
 const express = require("express");
 const app = express();
@@ -18,7 +18,8 @@ app.use(express.static("public"));
 //pobranie repo bazy danych
 const { mongoose } = require("mongoose");
 //ustanowienie zmiennej do nawiązania połaczenia
-mongoose.connect(DATABASE_URL, {
+
+mongoose.connect(config.db, {
   useNewUrlParser: true,
 });
 const db = mongoose.connection;
@@ -33,3 +34,6 @@ app.use("/", indexRouter);
 app.listen(process.env.PORT || 3000, () => {
   console.log("Listetning on http://localhost:3000");
 });
+
+///odpalheroku
+//podłączenie do mongodb Atlas
