@@ -1,12 +1,11 @@
 //sprawdzamy, jeśli nie odpali sie w srodowisku produkcyjnymn,wtedy załąduje bibliotekę dotenv
-
-const config = require("./utils/config");
-const { DATABASE_URL } = require("./utils/config");
 const express = require("express");
-const app = express();
+const { DATABASE_URL } = require("./utils/config");
 const expressLayouts = require("express-ejs-layouts");
-const mongoClient = require("mongodb");
 const bodyParser = require("body-parser");
+const methodOverride = require("method-override");
+
+const app = express();
 
 const indexRouter = require("./routes/index");
 const authorRouter = require("./routes/authors");
@@ -15,7 +14,9 @@ const bookRouter = require("./routes/books");
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.set("layout", "layouts/layout");
+
 app.use(expressLayouts);
+app.use(methodOverride("_method"));
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 
