@@ -2,6 +2,8 @@
 @import "shared/header.css";
 @import "shared/buttons.css";
 @import "shared/form.css";
+@import "shared/authors.css";
+@import "shared/books.css";
 
 :root {
   font-family: sans-serif;
@@ -25,6 +27,7 @@ body {
 
 .container {
   max-width: 1200px;
+  min-width: 500px;
   margin: auto;
   margin-bottom: 3rem;
 }
@@ -33,12 +36,16 @@ body {
   margin: 0 2rem;
 }
 
-.header-nav li a:hover,
+/* .header-nav li a:hover,
 .header-title:hover {
   color: white;
-}
+} */
 
 .page-header {
   font-size: 2rem;
   font-weight: 500;
+}
+
+.error-message {
+  color: hsl(var(--color-danger-hue), 100%, 50%);
 }
